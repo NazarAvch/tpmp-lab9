@@ -11,6 +11,10 @@ jobs:
     runs-on: macos-13
     steps:
     - uses: actions/checkout@v4
+    - name: Clean derived data
+      run: rm -rf ~/Library/Developer/Xcode/DerivedData
+    - name: Resolve Swift Package Dependencies
+      run: xcodebuild -resolvePackageDependencies -project HotelBooking.xcodeproj -scheme HotelBooking
     - name: Select Xcode version
       run: sudo xcode-select -switch /Applications/Xcode_14.3.1.app
     - name: Run tests
