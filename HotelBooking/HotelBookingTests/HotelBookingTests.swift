@@ -23,7 +23,7 @@ final class HotelBookingUnitTests: XCTestCase {
 
     // 1. Тест модели Hotel
     func testHotelModelInitialization() {
-        let hotel = Hotel(id: 101, name: "Grand Plaza", pricePerNight: 250.0, rating: 4.5)
+        let hotel = Hotel(id: 101, name: "Grand Plaza", pricePerNight: 250.0, rating: 4.5, imageName: "test")
         XCTAssertEqual(hotel.id, 101)
         XCTAssertEqual(hotel.name, "Grand Plaza")
         XCTAssertEqual(hotel.pricePerNight, 250.0)
@@ -75,7 +75,7 @@ final class HotelBookingUnitTests: XCTestCase {
 
     // 6. Расчёт общей стоимости бронирования
     func testTotalPriceCalculation() {
-        let hotel = Hotel(id: 1, name: "Test Hotel", pricePerNight: 100.0, rating: 4.0)
+        let hotel = Hotel(id: 1, name: "Test Hotel", pricePerNight: 100.0, rating: 4.0, imageName: "test")
         let checkIn = Date()
         let checkOut = Calendar.current.date(byAdding: .day, value: 3, to: checkIn)!
         let nights = Calendar.current.dateComponents([.day], from: checkIn, to: checkOut).day ?? 0
