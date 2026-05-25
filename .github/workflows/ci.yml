@@ -15,9 +15,6 @@ jobs:
       - name: Select Xcode version
         run: sudo xcode-select -switch /Applications/Xcode_16.2.app
       
-      - name: List available simulators (debug)
-        run: xcrun simctl list devices
-      
       - name: Resolve Swift Package Dependencies
         run: |
           xcodebuild -resolvePackageDependencies \
@@ -26,12 +23,9 @@ jobs:
       
       - name: Run Unit and UI Tests
         run: |
-          SIMULATOR_NAME=$(xcrun simctl list devices available | grep -m1 "iPhone" | grep -E -o 'iPhone [0-9, ]+' | xargs)
-          SIMULATOR_OS=$(xcrun simctl list runtimes | grep "iOS" | grep -m1 -E -o '[\d\.]+')
-          
-          echo "Running tests on: platform=iOS Simulator,name=$SIMULATOR_NAME,OS=$SIMULATOR_OS"
+          # Используем OS=latest – GitHub Actions сам подставит последнюю доступную версию iOS
           xcodebuild test \
             -project HotelBooking/HotelBooking.xcodeproj \
             -scheme HotelBooking \
-            -destination "platform=iOS Simulator,name=$SIMULATOR_NAME,OS=$SIMULATOR_OS" \
+            -destination 'platform=iOS Simulator,OS=latest' \
             -testPlan HotelBookingTestPlan
