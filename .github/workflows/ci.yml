@@ -12,9 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Select Xcode version
-        run: sudo xcode-select -switch /Applications/Xcode_15.4.app
-      
       - name: Resolve Swift Package Dependencies
         run: |
           xcodebuild -resolvePackageDependencies \
