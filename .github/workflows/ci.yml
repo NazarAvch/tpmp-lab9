@@ -8,21 +8,15 @@ on:
 
 jobs:
   test:
-    runs-on: macos-latest
+    runs-on: macos-13
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: List available simulators
-        run: xcrun simctl list devices
-
-      - name: Run Unit and UI Tests
-        run: |
-          SIMULATOR_NAME=$(xcrun simctl list devices available | grep -m1 "iPhone" | grep -E -o 'iPhone [0-9, ]+' | xargs)
-          SIMULATOR_OS=$(xcrun simctl list runtimes | grep "iOS" | grep -m1 -E -o '[\d\.]+')
-          
-          echo "Running tests on: platform=iOS Simulator,name=$SIMULATOR_NAME,OS=$SIMULATOR_OS"
-          xcodebuild test \
-            -project HotelBooking.xcodeproj \
-            -scheme HotelBooking \
-            -destination "platform=iOS Simulator,name=$SIMULATOR_NAME,OS=$SIMULATOR_OS" \
-            -testPlan HotelBookingTestPlan
+    - uses: actions/checkout@v4
+    - name: Select Xcode version
+      run: sudo xcode-select -switch /Applications/Xcode_14.3.1.app
+    - name: Run tests
+      run: |
+        xcodebuild test \
+          -project HotelBooking.xcodeproj \
+          -scheme HotelBooking \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.2' \
+          -testPlan HotelBookingTestPlan
