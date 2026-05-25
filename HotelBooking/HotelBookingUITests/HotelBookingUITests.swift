@@ -76,7 +76,7 @@ final class HotelBookingUITests: XCTestCase {
         let mapView = app.maps["route_map"]
         XCTAssertTrue(mapView.waitForExistence(timeout: 3))
 
-        mapView.tap(at: CGVector(dx: 0.5, dy: 0.5))
+        mapView.tap()
         let confirmRoute = app.buttons["confirm_route_button"]
         XCTAssertTrue(confirmRoute.waitForExistence(timeout: 2))
     }
