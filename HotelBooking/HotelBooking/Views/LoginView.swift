@@ -23,10 +23,10 @@ struct LoginView: View {
             Button(isRegistering ? "Зарегистрироваться" : "Войти") {
                 if isRegistering {
                     let user = User(email: email, password: password, name: name)
-                    UserDefaultsStorage.shared.saveUser(user)
+                    UserDefaultStorage.shared.saveUser(user)
                     isLoggedIn = true
                 } else {
-                    if let user = UserDefaultsStorage.shared.loadUser(), user.email == email && user.password == password {
+                    if let user = UserDefaultStorage.shared.loadUser(), user.email == email && user.password == password {
                         isLoggedIn = true
                     }
                 }
