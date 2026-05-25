@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Resolve Swift Package Dependencies
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project HotelBooking/HotelBooking.xcodeproj \
+            -scheme HotelBooking
+      
+      - name: Run Unit and UI Tests
+        run: |
+          xcodebuild test \
+            -project HotelBooking/HotelBooking.xcodeproj \
+            -scheme HotelBooking \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
+            -only-testing:HotelBookingTests \
+            -only-testing:HotelBookingUITests
