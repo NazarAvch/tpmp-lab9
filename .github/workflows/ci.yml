@@ -23,5 +23,5 @@ jobs:
           xcodebuild test \
             -project HotelBooking/HotelBooking.xcodeproj \
             -scheme HotelBooking \
-            -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.2' \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
             -testPlan HotelBookingTestPlan
