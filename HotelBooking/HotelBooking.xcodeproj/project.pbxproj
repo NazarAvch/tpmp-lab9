@@ -30,6 +30,7 @@
 		3EB8C7E92FC382B700D3439E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8C7E82FC382B700D3439E /* Preview Assets.xcassets */; };
 		3EB8C7FD2FC382B800D3439E /* HotelBookingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8C7FC2FC382B800D3439E /* HotelBookingUITests.swift */; };
 		3EB8C7FF2FC382B800D3439E /* HotelBookingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB8C7FE2FC382B800D3439E /* HotelBookingUITestsLaunchTests.swift */; };
+		3ED2FFE52FC431DB003989CC /* UserDefaultsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2FFE42FC431DB003989CC /* UserDefaultsProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		3EB8C7F82FC382B800D3439E /* HotelBookingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HotelBookingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB8C7FC2FC382B800D3439E /* HotelBookingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelBookingUITests.swift; sourceTree = "<group>"; };
 		3EB8C7FE2FC382B800D3439E /* HotelBookingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelBookingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3ED2FFE42FC431DB003989CC /* UserDefaultsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		3E7380432FC3848200FBABE7 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				3ED2FFE42FC431DB003989CC /* UserDefaultsProtocol.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				3E73805D2FC38E6800FBABE7 /* TransportSelectionView.swift in Sources */,
 				3E7380452FC384D200FBABE7 /* Hotel.swift in Sources */,
 				3E73804B2FC3857800FBABE7 /* Transport.swift in Sources */,
+				3ED2FFE52FC431DB003989CC /* UserDefaultsProtocol.swift in Sources */,
 				3E7380472FC384FF00FBABE7 /* Booking.swift in Sources */,
 				3E7380552FC3890900FBABE7 /* UserDefaultStorage.swift in Sources */,
 				3EB8C7E42FC382B600D3439E /* ContentView.swift in Sources */,
