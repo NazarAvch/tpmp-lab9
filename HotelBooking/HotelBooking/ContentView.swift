@@ -13,16 +13,19 @@ struct ContentView: View {
                 HotelListView(selectedTab: $selectedTab, currentBooking: $currentBooking)
                     .tabItem { Label("Отели", systemImage: "building.2") }
                     .tag(0)
+                    .accessibilityIdentifier("hotels_tab")
                 
                 if let booking = currentBooking {
                     TransportSelectionView(booking: booking)
                         .tabItem { Label("Транспорт", systemImage: "airplane") }
                         .tag(1)
+                        .accessibilityIdentifier("transport_tab")
                 }
                 
                 MyBookingsView()
                     .tabItem { Label("Мои брони", systemImage: "book") }
                     .tag(2)
+                    .accessibilityIdentifier("bookings_tab")
             }
         }
     }

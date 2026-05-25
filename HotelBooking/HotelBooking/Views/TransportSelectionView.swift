@@ -11,17 +11,42 @@ struct TransportSelectionView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Picker("Транспорт", selection: $selectedType) {
-                    ForEach(TransportType.allCases, id: \.self) { type in
-                        Text(type.rawValue).tag(type)
+                // Кнопки выбора транспорта (для UI-тестов)
+                HStack {
+                    Button("Самолёт") {
+                        selectedType = .plane
                     }
+                    .accessibilityIdentifier("plane_button")
+                    .padding()
+                    .background(selectedType == .plane ? Color.blue : Color.gray)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+                    
+                    Button("Поезд") {
+                        selectedType = .train
+                    }
+                    .accessibilityIdentifier("train_button")
+                    .padding()
+                    .background(selectedType == .train ? Color.blue : Color.gray)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+                    
+                    Button("Автобус") {
+                        selectedType = .bus
+                    }
+                    .accessibilityIdentifier("bus_button")
+                    .padding()
+                    .background(selectedType == .bus ? Color.blue : Color.gray)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
                 }
-                .pickerStyle(SegmentedPickerStyle())
                 .padding()
 
                 Button("Выбрать маршрут на карте") {
                     showRouteMap.toggle()
                 }
+                .accessibilityIdentifier("map_route_button")
+                .padding()
                 .sheet(isPresented: $showRouteMap) {
                     RouteMapView(flights: $flights, selectedType: selectedType)
                 }
@@ -41,6 +66,7 @@ struct TransportSelectionView: View {
                         selectedFlight = flight
                     }
                 }
+                .accessibilityIdentifier("flights_list")
             }
             .navigationTitle("Выберите рейс")
         }
@@ -60,13 +86,14 @@ struct RouteMapView: View {
         VStack {
             Map(coordinateRegion: $region)
                 .frame(height: 300)
+                .accessibilityIdentifier("route_map")
             Text("Выберите точки на карте (демо-режим)").font(.caption)
             Button("Подтвердить маршрут") {
                 flights = Flight.sampleFlights.filter { $0.type == selectedType }
                 dismiss()
             }
+            .accessibilityIdentifier("confirm_route_button")
             .padding()
         }
     }
 }
-

@@ -18,10 +18,13 @@ struct HotelDetailView: View {
             }
             Section("Даты") {
                 DatePicker("Заезд", selection: $checkIn, in: Date()..., displayedComponents: .date)
+                    .accessibilityIdentifier("check_in_picker")
                 DatePicker("Выезд", selection: $checkOut, in: checkIn..., displayedComponents: .date)
+                    .accessibilityIdentifier("check_out_picker")
             }
             Section("Гости") {
                 Stepper("\(guests) гостей", value: $guests, in: 1...6)
+                    .accessibilityIdentifier("guests_count")
             }
             Button("Забронировать") {
                 let validator = BookingDateValidator()
@@ -42,6 +45,7 @@ struct HotelDetailView: View {
                     showAlert = true
                 }
             }
+            .accessibilityIdentifier("book_now_button")
         }
         .navigationTitle(hotel.name)
         .alert(isPresented: $showAlert) {

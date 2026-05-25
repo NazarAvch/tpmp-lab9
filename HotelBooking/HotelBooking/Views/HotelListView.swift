@@ -20,9 +20,9 @@ struct HotelListView: View {
                     }
                 }
             }
+            .accessibilityIdentifier("hotels_list")   // добавленная строка
             .navigationTitle("Отели")
         }
     }
 }
-
 
