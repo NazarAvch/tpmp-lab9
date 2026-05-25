@@ -18,11 +18,21 @@ jobs:
             -project HotelBooking/HotelBooking.xcodeproj \
             -scheme HotelBooking
       
+      - name: Find available iPhone simulator
+        id: find_sim
+        run: |
+          # Получаем первый доступный симулятор iPhone
+          SIMULATOR_NAME=$(xcrun simctl list devices available | grep -m1 "iPhone" | grep -E -o 'iPhone [0-9, ]+' | head -1 | xargs)
+          SIMULATOR_OS=$(xcrun simctl list runtimes | grep "iOS" | grep -m1 -E -o '[\d\.]+' | head -1)
+          echo "Found simulator: $SIMULATOR_NAME on iOS $SIMULATOR_OS"
+          echo "name=$SIMULATOR_NAME" >> $GITHUB_OUTPUT
+          echo "os=$SIMULATOR_OS" >> $GITHUB_OUTPUT
+      
       - name: Run Unit and UI Tests
         run: |
           xcodebuild test \
             -project HotelBooking/HotelBooking.xcodeproj \
             -scheme HotelBooking \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
+            -destination "platform=iOS Simulator,name=${{ steps.find_sim.outputs.name }},OS=${{ steps.find_sim.outputs.os }}" \
             -only-testing:HotelBookingTests \
             -only-testing:HotelBookingUITests
