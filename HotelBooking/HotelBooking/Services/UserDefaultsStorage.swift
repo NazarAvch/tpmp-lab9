@@ -1,6 +1,6 @@
 import Foundation
 
-class UserDefaultsStorage {
+class UserDefaultsStorage: UserDefaultsProtocol {
     static let shared = UserDefaultsStorage()
     private let defaults = UserDefaults.standard
     private let userKey = "loggedInUser"
